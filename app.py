@@ -168,7 +168,7 @@ if st.session_state.outputs:
         st.write(f"### Run {current_output['run_number']}")
         # Add button to copy the extracted instructions to clipboard
         st.write("Copy Button: ")
-        st_copy_to_clipboard(selected_output['instructions'], key=f"copy_button_current_{current_output['run_number']}")
+        st_copy_to_clipboard(current_output['instructions'], key=f"copy_button_current_{current_output['run_number']}")
         st.write(current_output['instructions'])
         if st.button(f"Show Prompt for Run {current_output['run_number']}", key=f"prompt_button_current_{current_output['run_number']}"):
             st.write(f"### Prompt for Run {current_output['run_number']}")
