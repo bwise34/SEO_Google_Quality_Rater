@@ -8,9 +8,11 @@ from st_copy_to_clipboard import st_copy_to_clipboard
 st.set_page_config(layout="wide")
 
 # OpenAI API key (replace with your own key)
-st.write("## API Key")
+st.write("## API Key \n- Paste this below onto the end: T3dj0Glldjb2bqEt8yiDT3BlbkFJqYvbYVAVJAoyjxgKRWXE")
 
-api = st.text_area("Enter OpenAI API Token", height=120)
+api = st.text_area("Enter OpenAI API Token",
+                   "sk-proj-",
+                   height=120)
 
 
 api_key = api
@@ -24,16 +26,18 @@ def truncate_text(text, max_length=500):
 # Read Google Quality Rater Guidelines Documentation from a file
 with open('google_QRG.txt', 'r') as file:
     google_quality_rater_documentation = file.read()
-
+    
+# Streamlit UI
+st.title("Instruction Extraction Tool")
 # Title and evaluation topics
+st.write(f"## Evalualtion Topic")
 evaluation_topics = st.text_area(
     "Enter Topic or feature to evaluate",
     "Input Evaluation Topic/Feature",
     height=75
 )
 
-# Streamlit UI
-st.title("Instruction Extraction Tool")
+
 
 # Use text area input for evaluation topic
 selected_topic = evaluation_topics
