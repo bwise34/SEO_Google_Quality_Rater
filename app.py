@@ -1,7 +1,8 @@
 import streamlit as st
 import openai
 from openai import OpenAI
-import pyperclip
+# import pyperclip
+from st_copy_to_clipboard import st_copy_to_clipboard
 
 # Set layout to wide
 st.set_page_config(layout="wide")
@@ -155,8 +156,8 @@ if st.session_state.outputs:
         if selected_output:
             st.write(f"### Run {selected_output['run_number']}")
             # Add button to copy the extracted instructions to clipboard
-            if st.button(f"Copy Instructions for Run {selected_output['run_number']}", key=f"copy_button_previous_{selected_output['run_number']}"):
-                pyperclip.copy(selected_output['instructions'])
+            st.write("Copy Button: ")
+            st_copy_to_clipboard(selected_output['instructions'], key=f"copy_button_previous_{selected_output['run_number']}")
             st.write(selected_output['instructions'])
             if st.button(f"Show Prompt for Run {selected_output['run_number']}", key=f"prompt_button_previous_{selected_output['run_number']}"):
                 st.write(f"### Prompt for Run {selected_output['run_number']}")
@@ -166,8 +167,8 @@ if st.session_state.outputs:
         st.write("## Current Output")
         st.write(f"### Run {current_output['run_number']}")
         # Add button to copy the extracted instructions to clipboard
-        if st.button(f"Copy Instructions for Run {current_output['run_number']}", key=f"copy_button_current_{current_output['run_number']}"):
-            pyperclip.copy(current_output['instructions'])
+        st.write("Copy Button: ")
+        st_copy_to_clipboard(selected_output['instructions'], key=f"copy_button_current_{current_output['run_number']}")
         st.write(current_output['instructions'])
         if st.button(f"Show Prompt for Run {current_output['run_number']}", key=f"prompt_button_current_{current_output['run_number']}"):
             st.write(f"### Prompt for Run {current_output['run_number']}")
