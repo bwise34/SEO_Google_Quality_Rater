@@ -3,7 +3,7 @@ import openai
 from openai import OpenAI
 
 # OpenAI API key (replace with your own key)
-api_key = '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'
+api_key = 'sk-proj-z3A9XUYCSUQuaNhO6r8RT3BlbkFJlISm302j6SwtARwsGLLs'
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
