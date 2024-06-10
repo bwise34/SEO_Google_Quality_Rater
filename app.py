@@ -1,21 +1,22 @@
 import streamlit as st
 import openai
 from openai import OpenAI
+import os
 # import pyperclip
 from st_copy_to_clipboard import st_copy_to_clipboard
 
 # Set layout to wide
 st.set_page_config(layout="wide")
-
+api_key = os.environ["API_KEY"]
 # OpenAI API key (replace with your own key)
-st.write("## API Key \n- Paste this below onto the end: T3dj0Glldjb2bqEt8yiDT3BlbkFJqYvbYVAVJAoyjxgKRWXE")
+# st.write("## API Key \n- Paste this below onto the end: T3dj0Glldjb2bqEt8yiDT3BlbkFJqYvbYVAVJAoyjxgKRWXE")
 
-api = st.text_area("Enter OpenAI API Token",
-                   "sk-proj-",
-                   height=120)
+# api = st.text_area("Enter OpenAI API Token",
+#                    "sk-proj-",
+#                    height=120)
 
 
-api_key = api
+# api_key = api
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
