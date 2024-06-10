@@ -28,7 +28,7 @@ with open('google_QRG.txt', 'r') as file:
 # Title and evaluation topics
 evaluation_topics = st.text_area(
     "Enter Topic or feature to evaluate",
-    "[Topic/Feature here]",
+    "Input Evaluation Topic/Feature",
     height=75
 )
 
