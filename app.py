@@ -3,7 +3,12 @@ import openai
 from openai import OpenAI
 
 # OpenAI API key (replace with your own key)
-api_key = 'sk-proj-z3A9XUYCSUQuaNhO6r8RT3BlbkFJlISm302j6SwtARwsGLLs'
+st.write("## API Key")
+
+api = st.text_area("Enter OpenAI API Token", height=120)
+
+
+api_key = api
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
