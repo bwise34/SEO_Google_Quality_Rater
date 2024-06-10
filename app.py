@@ -3,6 +3,9 @@ import openai
 from openai import OpenAI
 import pyperclip
 
+# Set layout to wide
+st.set_page_config(layout="wide")
+
 # OpenAI API key (replace with your own key)
 st.write("## API Key")
 
@@ -10,9 +13,6 @@ api = st.text_area("Enter OpenAI API Token", height=120)
 
 
 api_key = api
-
-# Set layout to wide
-st.set_page_config(layout="wide")
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
