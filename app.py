@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 from openai import OpenAI
+import pyperclip
 
 # OpenAI API key (replace with your own key)
 st.write("## API Key")
@@ -9,6 +10,9 @@ api = st.text_area("Enter OpenAI API Token", height=120)
 
 
 api_key = api
+
+# Set layout to wide
+st.set_page_config(layout="wide")
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
@@ -38,11 +42,14 @@ st.write(f"## Selected Evaluation Topic: \n - {selected_topic}")
 
 st.write(f"## System Role")
 # Prompt input for system role
-role = st.text_area("Enter your system role for the GPT model", height=200)
+role = st.text_area("Enter your system role for the GPT model. \n\n **Does NOT have to change but wanted to provide the ability to try different system roles.**",
+                        "You are a helpful assistant.", 
+                        height=300)
 
 st.write(f"## Prompt")
+st.write("Within the prompt to use stored variables such as the Google QRG Documentation or the Evaluation Topic, please provide them in the text area in the following example format: \n - {google_quality_rater_documentation} \n - {selected_topic} \n - {name of variable} ")
 # Prompt input for user prompt
-prompt = st.text_area("Enter your prompt for the GPT model", height=200)
+prompt = st.text_area("Enter your prompt for the GPT model", height=300)
 
 # Initialize or load stored outputs
 if 'outputs' not in st.session_state:
@@ -147,16 +154,22 @@ if st.session_state.outputs:
         st.write("## Previous Output")
         if selected_output:
             st.write(f"### Run {selected_output['run_number']}")
+            # Add button to copy the extracted instructions to clipboard
+            if st.button(f"Copy Instructions for Run {selected_output['run_number']}", key=f"copy_button_previous_{selected_output['run_number']}"):
+                pyperclip.copy(selected_output['instructions'])
             st.write(selected_output['instructions'])
-            if st.button(f"Show Prompt for Run {selected_output['run_number']}", key=f"prompt_button_{selected_output['run_number']}"):
+            if st.button(f"Show Prompt for Run {selected_output['run_number']}", key=f"prompt_button_previous_{selected_output['run_number']}"):
                 st.write(f"### Prompt for Run {selected_output['run_number']}")
                 st.write(selected_output['prompt'])
     
     with col2:
         st.write("## Current Output")
         st.write(f"### Run {current_output['run_number']}")
+        # Add button to copy the extracted instructions to clipboard
+        if st.button(f"Copy Instructions for Run {current_output['run_number']}", key=f"copy_button_current_{current_output['run_number']}"):
+            pyperclip.copy(current_output['instructions'])
         st.write(current_output['instructions'])
-        if st.button(f"Show Prompt for Run {current_output['run_number']}", key=f"prompt_button_{current_output['run_number']}"):
+        if st.button(f"Show Prompt for Run {current_output['run_number']}", key=f"prompt_button_current_{current_output['run_number']}"):
             st.write(f"### Prompt for Run {current_output['run_number']}")
             st.write(current_output['prompt'])
 
