@@ -20,7 +20,13 @@ def truncate_text(text, max_length=500):
 # Read Google Quality Rater Guidelines Documentation from a file
 with open('google_QRG.txt', 'r') as file:
     google_quality_rater_documentation = file.read()
-    
+
+# Defining OpenAI request settings
+st.write("### OpenAI Model Settings \n I would say stay around the **0.4 to 0.9** range \n - The higher the number the more creative the model will be \n - The lower the setting the more deterministic the model will be")
+# Temperature scale for setting the temperature setting to the OpenAI request
+temp = st.slider("Set the temperature for the OpenAI request", min_value=0.0, max_value=1.0, value=0.6, step=0.1)
+
+
 # Streamlit UI
 st.title("Instruction Extraction Tool")
 # Title and evaluation topics
@@ -120,7 +126,7 @@ if st.button("## Extract Instructions"):
             {"role": "system", "content": role},
             {"role": "user", "content": formatted_prompt}
         ],
-        temperature=0.4,
+        temperature=temp,
         max_tokens=4000
     )
 
