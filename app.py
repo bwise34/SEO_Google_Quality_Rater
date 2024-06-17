@@ -16,7 +16,11 @@ def truncate_text(text, max_length=500):
     if len(text) > max_length:
         return text[:max_length] + "..."
     return text
-
+    
+# Helper function to convert text to HTML-friendly format
+def convert_to_html(text):
+    return text.replace('\n', '<br>').replace(' ', '&nbsp;')
+    
 # Read Google Quality Rater Guidelines Documentation from a file
 with open('google_QRG.txt', 'r') as file:
     google_quality_rater_documentation = file.read()
@@ -97,7 +101,7 @@ with st.sidebar:
             </tr>
             <tr>
                 <td class="wrap-text">google_quality_rater_documentation</td>
-                <td>{truncate_text(google_quality_rater_documentation, 100)}</td>
+                <td>{convert_to_html(truncate_text(google_quality_rater_documentation, 100))}</td>
             </tr>
             <tr>
                 <td class="wrap-text">selected_topic</td>
