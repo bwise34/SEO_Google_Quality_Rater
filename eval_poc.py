@@ -37,21 +37,24 @@ st.write("## Define the Topic or Evaluation feature")
 evaluation_topics = st.text_area(
     "Enter Topic or feature to evaluate",
     "Evaluation Topic/Feature",
-    height=75
+    height=75,
+    key="topic_input"
 )
 # Use text area input for evaluation topic
 selected_topic = evaluation_topics
 
 # Define the Extracted Instructions
 st.write("## Extracted Instructions - For Testing Evaluations")
-extract_instructions = st.text_area("Enter the extracted instructions", height=300)
+extract_instructions = st.text_area("Enter the extracted instructions", height=300,
+                                   key="instruction_input")
 
 # Initialize or load stored outputs
 if 'outputs' not in st.session_state:
     st.session_state.outputs = []
 st.write("# Extracting Article Components from the Given URL")
 # Input field for URL
-url = st.text_input("Enter the URL to process")
+url = st.text_input("Enter the URL to process",
+                   key="url_input")
 
 #  Process the URL when the button is clicked
 if st.button("Process URL"):
@@ -148,21 +151,20 @@ st.title("Instruction Extraction Tool")
 # Display the selected topic
 st.write(f"## Selected Evaluation Topic: \n - {selected_topic}")
 
-# Define the Extracted Instructions
-st.write("## Extracted Instructions")
-extract_instructions = st.text_area("Enter the extracted instructions", height=300)
 
 st.write(f"## System Role")
 # Prompt input for system role
 role = st.text_area("Enter your system role for the GPT model. \n\n **Does NOT have to change but wanted to provide the ability to try different system roles.**",
                         "You are a helpful assistant.", 
-                        height=300)
+                        height=300,
+                        key="role_input")
 
 st.write(f"## Prompt")
 st.write("Within the prompt to use stored variables such as the Google QRG Documentation or the Evaluation Topic, please provide them in the text area in the following example format: \n - {google_quality_rater_documentation} \n - {selected_topic} \n - {name of variable} ")
 
 # Prompt input for user prompt
-prompt = st.text_area("Enter your prompt for the GPT model", height=300)
+prompt = st.text_area("Enter your prompt for the GPT model", height=300,
+                     key="prompt_input")
 
 
 # Button to trigger extraction
