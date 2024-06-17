@@ -6,13 +6,13 @@ from st_copy_to_clipboard import st_copy_to_clipboard
 # Import the functions from the newly created Python file
 from webscraping import process_url
 
-# OpenAI API key (replace with your own key)
-api_key = os.environ["API_KEY"]
+
 
 # Set layout to wide
 st.set_page_config(layout="wide")
 
-
+# Set OpenAI key from Streamlit Cloud secret variable
+api_key = os.environ["API_KEY"]
 
 # Helper function to truncate text
 def truncate_text(text, max_length=500):
