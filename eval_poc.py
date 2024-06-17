@@ -42,6 +42,10 @@ evaluation_topics = st.text_area(
 # Use text area input for evaluation topic
 selected_topic = evaluation_topics
 
+# Define the Extracted Instructions
+st.write("## Extracted Instructions - For Testing Evaluations")
+extract_instructions = st.text_area("Enter the extracted instructions", height=300)
+
 # Initialize or load stored outputs
 if 'outputs' not in st.session_state:
     st.session_state.outputs = []
@@ -103,6 +107,10 @@ with st.sidebar:
                 <td>{truncate_text(selected_topic, 100)}</td>
             </tr>
             <tr>
+                <td class="wrap-text">selected_topic</td>
+                <td>{truncate_text(extract_instructions, 100)}</td>
+            </tr>
+            <tr>
                 <td class="wrap-text">google_quality_rater_documentation</td>
                 <td>{convert_to_html(truncate_text(google_quality_rater_documentation, 100))}</td>
             </tr>
@@ -140,6 +148,10 @@ st.title("Instruction Extraction Tool")
 # Display the selected topic
 st.write(f"## Selected Evaluation Topic: \n - {selected_topic}")
 
+# Define the Extracted Instructions
+st.write("## Extracted Instructions")
+extract_instructions = st.text_area("Enter the extracted instructions", height=300)
+
 st.write(f"## System Role")
 # Prompt input for system role
 role = st.text_area("Enter your system role for the GPT model. \n\n **Does NOT have to change but wanted to provide the ability to try different system roles.**",
@@ -161,6 +173,7 @@ if st.button("## Extract Instructions"):
     variables = {
         "google_quality_rater_documentation": google_quality_rater_documentation,
         "selected_topic": selected_topic,
+        "extracted_instructions": extract_instructions,
         "article_title": result.get('article_title', ''),
         "article_text": result.get('article_text', ''),
         "article_internal_links": result.get('article_internal_links', ''),
