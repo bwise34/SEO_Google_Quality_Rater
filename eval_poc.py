@@ -107,7 +107,7 @@ with st.sidebar:
                 <td>{truncate_text(selected_topic, 100)}</td>
             </tr>
             <tr>
-                <td class="wrap-text">selected_topic</td>
+                <td class="wrap-text">extract_instructions</td>
                 <td>{truncate_text(extract_instructions, 100)}</td>
             </tr>
             <tr>
@@ -173,7 +173,7 @@ if st.button("## Extract Instructions"):
     variables = {
         "google_quality_rater_documentation": google_quality_rater_documentation,
         "selected_topic": selected_topic,
-        "extracted_instructions": extract_instructions,
+        "extract_instructions": extract_instructions,
         "article_title": result.get('article_title', ''),
         "article_text": result.get('article_text', ''),
         "article_internal_links": result.get('article_internal_links', ''),
